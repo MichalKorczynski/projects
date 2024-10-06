@@ -9,7 +9,6 @@ public class Main {
         Queue<String> numbers;
 
         String[] numbersArr = inputExp.split("[-+*/%]");
-//        String[] operArr = inputExp.split("[0-9]+");
         String[] operArr = inputExp.split("\\d+");
         numbers = new LinkedList<>(Arrays.asList(numbersArr));
         operations = new LinkedList<>(Arrays.asList(operArr));
@@ -46,7 +45,21 @@ public class Main {
         System.out.println(res);
     }
 }
+interface Operate {
+    Double getResult(Double... numbers);
+}
 
+class ReadInput {
+    public static String read(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Input Expression Example: 4*3/2");
+        String inputLine = scanner.nextLine();
+
+        scanner.close();
+        return inputLine;
+    }
+}
 class Add implements Operate{
     @Override
     public Double getResult(Double... numbers){
@@ -92,21 +105,7 @@ class Multiply implements Operate {
     }
 
 }
-interface Operate {
-    Double getResult(Double... numbers);
-}
 
-class ReadInput {
-    public static String read(){
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Input Expression Example: 4*3/2");
-        String inputLine = scanner.nextLine();
-
-        scanner.close();
-        return inputLine;
-    }
-}
 class Sub implements Operate{
     @Override
     public Double getResult(Double... numbers){
